@@ -7,12 +7,13 @@ public class TelDto {
     private String address;
     private String telNumber;
 
-    public TelDto(String telNumber, String address, int age, String name, Long id) {
-        this.telNumber = telNumber;
-        this.address = address;
-        this.age = age;
-        this.name = name;
+    public TelDto(Long id, String name, int age, String address, String telNumber ) {
         this.id = id;
+        this.name = name;
+        this.age = age;
+        this.address = address;
+        this.telNumber = telNumber;
+
     }
 
     public Long getId() {
