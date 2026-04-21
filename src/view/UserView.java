@@ -1,5 +1,8 @@
 package view;
 
+import exception.InputValidation;
+import exception.MyException;
+
 import java.util.Scanner;
 
 public class UserView {
@@ -9,21 +12,59 @@ public class UserView {
         
     }
 
-    public void insert() {
+    public void insert() throws MyException{
+        // 검증 클래스 생성
+        InputValidation Validation = new InputValidation();
+        // 입력자료 저장을 위한 변수 선언
+        String name;
+        int age;
+        String phone;
+        String address;
+
         System.out.println("== 전화번호 등록 ==");
-        // 이름 : 무조건 한글만. 중간 공백 없이
-        System.out.println("이름 : ");
-        String name = scanner.next();
+        // 이름이 올바른 값이 들어올 때까지 반복
+        boolean nameOk = false;
+        do {
+            try {
+                // 이름 : 무조건 한글만. 중간 공백 없이
+                System.out.println("이름 : ");
+                name = scanner.next();
+                Validation.nameCheck(name);
+                nameOk = true;
+            } catch (MyException e) {
+                System.out.println(e.getMessage());
+            }
+        } while (! nameOk);
+
         // 나이 : 0세~120세 사이값
-        System.out.println("나이 : ");
-        int age = scanner.nextInt();
+        boolean ageOk = false;
+        do {
+            try {
+                System.out.println("나이 : ");
+                age = scanner.nextInt();
+                Validation.ageCheck(age);
+                ageOk = true;
+            } catch (MyException e) {
+                System.out.println(e.getMessage());
+            }
+        } while (! ageOk);
+
         // 주소
         System.out.println("주소 : ");
-        String address = scanner.next();
-        // 전화번호(010-xxxx-xxxx)
-        System.out.println("전화번호 : ");
-        String phone = scanner.next();
+        address = scanner.next();
 
+        // 전화번호(010-xxxx-xxxx)
+        boolean phoneOk = false;
+        do {
+            try {
+                System.out.println("전화번호 : ");
+                phone = scanner.next();
+                Validation.phoneCheck(phone);
+                phoneOk = true;
+            } catch (MyException e) {
+                System.out.println(e.getMessage());
+            }
+        } while (! phoneOk);
     }
 
     public void update() {
