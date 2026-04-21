@@ -14,7 +14,7 @@ public class UserView {
 
     public void insert() throws MyException{
         // 검증 클래스 생성
-        InputValidation Validation = new InputValidation();
+        InputValidation validation = new InputValidation();
         // 입력자료 저장을 위한 변수 선언
         String name;
         int age;
@@ -29,7 +29,7 @@ public class UserView {
                 // 이름 : 무조건 한글만. 중간 공백 없이
                 System.out.println("이름 : ");
                 name = scanner.next();
-                Validation.nameCheck(name);
+                validation.nameCheck(name);
                 nameOk = true;
             } catch (MyException e) {
                 System.out.println(e.getMessage());
@@ -42,7 +42,7 @@ public class UserView {
             try {
                 System.out.println("나이 : ");
                 age = scanner.nextInt();
-                Validation.ageCheck(age);
+                validation.ageCheck(age);
                 ageOk = true;
             } catch (MyException e) {
                 System.out.println(e.getMessage());
@@ -59,7 +59,7 @@ public class UserView {
             try {
                 System.out.println("전화번호 : ");
                 phone = scanner.next();
-                Validation.phoneCheck(phone);
+                validation.phoneCheck(phone);
                 phoneOk = true;
             } catch (MyException e) {
                 System.out.println(e.getMessage());
